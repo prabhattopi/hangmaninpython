@@ -1,19 +1,20 @@
-let word = "fish";
+let word = "hangman";
 
 let guesses = [];
 
 let allowedErrors = 7;
 
 let done = false;
-
+let khaliArray = new Array(word.length).fill("_");
 while (!done) {
   for (let i = 0; i < word.length; i++) {
     for (let j = 0; j < guesses.length; j++) {
-      word[i].toLowerCase() === guesses[j].toLowerCase()
-        ? console.log(word[i])
-        : console.log("_");
+      if (word[i].toLowerCase() === guesses[j].toLowerCase()) {
+        khaliArray[i] = word[i].toLowerCase();
+      }
     }
   }
+  console.log(khaliArray.join(" "));
   console.log("");
 
   let guess = prompt(`Allowed Errros left ${allowedErrors},Another Guesses: `);
@@ -47,7 +48,11 @@ while (!done) {
 }
 
 if (done) {
-  document.getElementById("word").innerText=`You find the word! it was ${word}`
+  document.getElementById(
+    "word"
+  ).innerText = `You find the word! it was ${word}`;
 } else {
-  document.getElementById("word").innerText=`Game over You died! The word was ${word}`
+  document.getElementById(
+    "word"
+  ).innerText = `Game over You died! The word was ${word}`;
 }
